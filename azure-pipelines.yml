@@ -40,7 +40,7 @@ steps:
 
 - task: Docker@2
   inputs:
-    containerRegistry: 'ACR via Admin'
+    containerRegistry: 'ACR'
     repository: 'gosample'
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'

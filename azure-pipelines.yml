@@ -37,3 +37,10 @@ steps:
     go build -v .
   workingDirectory: '$(modulePath)'
   displayName: 'Get dependencies, then build'
+
+- task: Docker@2
+  inputs:
+    containerRegistry: 'Docker Hub gbaeke'
+    repository: 'gosample'
+    command: 'buildAndPush'
+    Dockerfile: '**/Dockerfile'

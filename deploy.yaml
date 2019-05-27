@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nasnet
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 9090
+  selector:
+    app: nasnet
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nasnet
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nasnet
+  template:
+    metadata:
+      labels:
+        app: nasnet
+    spec:
+      containers:
+      - name: nasnet
+        image: gbaeke/nasnet-go
+        ports:
+        - containerPort: 9090
+        resources:
+          requests:
+            cpu: 500m
+            memory: 1024Mi
+          limits:
+            cpu: 1000m
+            memory: 2048Mi

@@ -31,7 +31,8 @@ stages:
                 action: 'deploy'
                 kubernetesServiceConnection: 'dev-kub-gosample-1558821689026'
                 namespace: 'gosample'
-                manifests: 'deploy.yaml'
+                repository: 'gosample'
+                manifests: '**/deploy.yaml'
                 containers: 'nginx'
 
 

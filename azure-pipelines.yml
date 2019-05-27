@@ -2,6 +2,10 @@
 trigger:
 - master
 
+variables:
+  imageName: 'gosample'
+  registry: 'kubreg.azurecr.io'
+
 stages:
 - stage: build
   jobs:
@@ -12,7 +16,7 @@ stages:
     - task: Docker@2
       inputs:
         containerRegistry: 'ACR'
-        repository: 'gosample'
+        repository: '$(imageName)'
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
     - task: PublishPipelineArtifact@0
@@ -42,7 +46,7 @@ stages:
                 kubernetesServiceConnection: 'dev-kub-gosample-1558821689026'
                 namespace: 'gosample'
                 manifests: '$(System.ArtifactsDirectory)/manifests/deploy.yaml'
-                containers: 'nginx'
+                containers: '$(registry)/$(imageName):$(Build.BuildId)'
 
 
 

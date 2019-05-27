@@ -25,13 +25,13 @@ stages:
     strategy:
       runOnce:
         deploy:
+          repository: 'gosample'
           steps:
             - task: KubernetesManifest@0
               inputs:
                 action: 'deploy'
                 kubernetesServiceConnection: 'dev-kub-gosample-1558821689026'
                 namespace: 'gosample'
-                repository: 'gosample'
                 manifests: '**/deploy.yaml'
                 containers: 'nginx'
 

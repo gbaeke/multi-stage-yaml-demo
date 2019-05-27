@@ -21,7 +21,7 @@ stages:
         Dockerfile: '**/Dockerfile'
     - task: PublishPipelineArtifact@0
       inputs:
-        artifactName: 'sources'
+        artifactName: 'manifests'
         targetPath: 'manifests'
 
 - stage: deploy
@@ -33,7 +33,6 @@ stages:
     strategy:
       runOnce:
         deploy:
-          repository: 'gosample'
           steps:
             - task: DownloadPipelineArtifact@1
               inputs:

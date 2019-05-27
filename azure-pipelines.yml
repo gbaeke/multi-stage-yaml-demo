@@ -15,6 +15,10 @@ stages:
         repository: 'gosample'
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
+    - task: PublishPipelineArtifact@0
+      inputs:
+        artifactName: 'sources'
+        targetPath: '/'
 
 - stage: deploy
   jobs:
@@ -27,12 +31,17 @@ stages:
         deploy:
           repository: 'gosample'
           steps:
+            - task: DownloadPipelineArtifact@1
+              inputs:
+                buildType: 'current'
+                artifactName: 'sources'
+                targetPath: '$(System.ArtifactsDirectory)'
             - task: KubernetesManifest@0
               inputs:
                 action: 'deploy'
                 kubernetesServiceConnection: 'dev-kub-gosample-1558821689026'
                 namespace: 'gosample'
-                manifests: '**/deploy.yaml'
+                manifests: '$(System.ArtifactsDirectory)/deploy.yaml'
                 containers: 'nginx'
 
 

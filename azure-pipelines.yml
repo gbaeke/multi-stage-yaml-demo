@@ -37,7 +37,7 @@ stages:
             - task: DownloadPipelineArtifact@1
               inputs:
                 buildType: 'current'
-                artifactName: 'sources'
+                artifactName: 'manifests'
                 targetPath: '$(System.ArtifactsDirectory)/manifests'
             - task: KubernetesManifest@0
               inputs:

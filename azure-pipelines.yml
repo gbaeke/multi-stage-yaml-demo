@@ -17,4 +17,21 @@ steps:
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
 
+stages:
+- stage: deploy
+  jobs:
+  - deployment: DeployWeb
+    displayName: deploy Web App
+    pool:
+      vmImage: 'Ubuntu-16.04'
+    # creates an environment if it doesn't exist
+    environment: 'dev'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - script: echo Hello world
+
+
+
 

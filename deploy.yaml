@@ -6,7 +6,7 @@ spec:
   ports:
   - port: 80
     protocol: TCP
-    targetPort: 9090
+    targetPort: 8080
   selector:
     app: gosample
   type: LoadBalancer
@@ -29,7 +29,7 @@ spec:
       - name: gosample
         image: gbaeke/gosample
         ports:
-        - containerPort: 9090
+        - containerPort: 8080
         resources:
           requests:
             cpu: 500m

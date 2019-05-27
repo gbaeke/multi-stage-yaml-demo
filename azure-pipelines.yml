@@ -18,7 +18,7 @@ stages:
     - task: PublishPipelineArtifact@0
       inputs:
         artifactName: 'sources'
-        targetPath: '/'
+        targetPath: '/manifests'
 
 - stage: deploy
   jobs:
@@ -41,7 +41,7 @@ stages:
                 action: 'deploy'
                 kubernetesServiceConnection: 'dev-kub-gosample-1558821689026'
                 namespace: 'gosample'
-                manifests: '$(System.ArtifactsDirectory)/deploy.yaml'
+                manifests: '$(System.ArtifactsDirectory)/manifests/deploy.yaml'
                 containers: 'nginx'
 
 

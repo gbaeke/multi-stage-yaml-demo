@@ -35,7 +35,7 @@ stages:
               inputs:
                 buildType: 'current'
                 artifactName: 'sources'
-                targetPath: '$(System.ArtifactsDirectory)'
+                targetPath: '$(System.ArtifactsDirectory)/manifests'
             - task: KubernetesManifest@0
               inputs:
                 action: 'deploy'

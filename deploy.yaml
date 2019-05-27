@@ -1,33 +1,33 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: nasnet
+  name: gosample
 spec:
   ports:
   - port: 80
     protocol: TCP
     targetPort: 9090
   selector:
-    app: nasnet
+    app: gosample
   type: LoadBalancer
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nasnet
+  name: gosample
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nasnet
+      app: gosample
   template:
     metadata:
       labels:
-        app: nasnet
+        app: gosample
     spec:
       containers:
-      - name: nasnet
-        image: gbaeke/nasnet-go
+      - name: gosample
+        image: gbaeke/gosample
         ports:
         - containerPort: 9090
         resources:

@@ -32,7 +32,7 @@ stages:
                 kubernetesServiceConnection: 'dev-kub-gosample-1558821689026'
                 namespace: 'gosample'
                 manifests: 'deploy.yaml'
-                containers: 'baeke/nasnet-go'
+                containers: 'nginx'
 
 
 

@@ -14,7 +14,7 @@ func getEnv(key, fallback string) string {
 	return value
 }
 
-func mains() {
+func main() {
 	port := getEnv("PORT", "8080")
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
